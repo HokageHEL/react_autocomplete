@@ -17,7 +17,7 @@ export const Autocomplete: React.FC<Props> = React.memo(
               className="dropdown-item"
               data-cy="suggestion-item"
               key={index}
-              onClick={() => onSelect(person)}
+              onMouseDown={() => onSelect(person)}
             >
               <p
                 className={cn('has-text-link', {

@@ -1,5 +1,5 @@
 import './App.scss';
-import React, { useMemo, useState, useRef, useEffect } from 'react';
+import React, { useMemo, useState } from 'react';
 import cn from 'classnames';
 import debounce from 'lodash.debounce';
 import { peopleFromServer } from './data/people';
@@ -38,29 +38,13 @@ export const App: React.FC = () => {
     setSelectedPerson(person);
   };
 
-  const timeoutRef = useRef<number | null>(null);
-
   const handleInputBlur = () => {
-    timeoutRef.current = window.setTimeout(() => {
-      setIsInputFocused(false);
-    }, 100);
+    setIsInputFocused(false);
   };
 
   const handleInputFocus = () => {
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-    }
-
     setIsInputFocused(true);
   };
-
-  useEffect(() => {
-    return () => {
-      if (timeoutRef.current !== null) {
-        clearTimeout(timeoutRef.current);
-      }
-    };
-  }, []);
 
   const title = selectedPerson
     ? `${name} (${born} - ${died})`
