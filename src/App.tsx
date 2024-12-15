@@ -36,6 +36,7 @@ export const App: React.FC = () => {
 
   const handleSelect = (person: Person) => {
     setSelectedPerson(person);
+    setQuery(person.name);
   };
 
   const handleInputBlur = () => {
